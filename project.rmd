@@ -184,8 +184,9 @@ lm_df <- na.omit(lm_df)
 lm_df$log_education <- log(lm_df$education_in_govt_exp)
 lm_df$log_GDP <- log(lm_df$GDP)
 lm_df$log_labour <- log(lm_df$labour_data)
+lm_df$log_physical <- lm_df$labor_productivity
 
-lm2 <- lm(log_GDP ~ Year + log_labour + log_education + labor_productivity, data = lm_df)
+lm2 <- lm(log_GDP ~ log_labour + log_education + log_physical, data = lm_df)
 car::vif(lm2)
 # Plot linear regression model
 plot(lm_df$log_GDP, fitted(lm2), main = "Linear Regression Model", xlab = "Actual Values", ylab = "Predicted Values")
